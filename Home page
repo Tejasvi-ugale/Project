@@ -1,0 +1,122 @@
+
+
+from tkinter import *
+from PIL import Image, ImageTk
+import os
+
+
+class RMS:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Mahatma Gandhi Mission College of Engineering")
+        root.geometry("1370x760+0+0")
+        root.resizable(True, False)
+        root.config(bg="white")
+        # === icon =====
+        self.clglogo = ImageTk.PhotoImage(file="mgmlogoc.png")
+        # ==== title  =====
+        title = Label(self.root, text="Student Information Management System", compound=LEFT, image=self.clglogo, padx=10, bd=9,
+                      relief=GROOVE,
+                      font=("times", 35, 'italic bold'), bg='#033054', fg='white')
+        title.pack(side=TOP, fill=X)
+
+        # === Menu ====
+        M_Frame = LabelFrame(self.root, text="Menus", font=("times", 15, 'italic bold'), bg="white")
+        M_Frame.place(x=10, y=70, width=1340, height=80)
+
+        btn1 = Button(M_Frame, text="Course", bd=10, bg='#0b5377', fg="white", activebackground='red', width=15,
+                      font=("times", 10, 'bold'), cursor="hand2", command=self.course).place(x=20, y=5)
+
+        btn2 = Button(M_Frame, text="SMS", bd=10, bg='#0b5377', fg="white", activebackground='red', width=15,
+                      font=("times", 10, 'bold'), cursor="hand2", command=self.manage_student).place(x=200, y=5)
+
+        btn3 = Button(M_Frame, text="Result", bd=10, bg='#0b5377', fg="white", activebackground='red', width=15,
+                      font=("times", 10, 'bold'), cursor="hand2", command=self.manage_result).place(x=400, y=5)
+
+        btn4 = Button(M_Frame, text="View Student Result", bd=10, bg='#0b5377', fg="white", activebackground='red',
+                      width=20,
+                      font=("times", 10, 'bold'), cursor="hand2", command=self.result).place(x=600, y=5)
+
+        btn5 = Button(M_Frame, text="Director's Desk", command=self.director, bd=10, bg='#0b5377', fg="white", activebackground='red',
+                      width=20,
+                      font=("times", 10, 'bold'), cursor="hand2").place(x=800, y=5)
+
+        btn5 = Button(M_Frame, text="About Us", command=self.about, bd=10, bg='#0b5377', fg="white", activebackground='red',
+                      width=15,
+                      font=("times", 10, 'bold'), cursor="hand2").place(x=1000, y=5)
+
+        btn7 = Button(M_Frame, text="Log out", bd=10, bg='#0b5377', fg="white", activebackground='red', width=15,
+                      font=("times", 10, 'bold'), command=self.log_out, cursor="hand2").place(x=1180, y=5)
+
+
+        # ==== Contact window ===
+
+        self.bg_img = Image.open("bg.png")
+        self.bg_img = self.bg_img.resize((920, 350), Image.ANTIALIAS)
+        self.bg_img = ImageTk.PhotoImage(self.bg_img)
+
+        self.lbl_bg = Label(self.root, image=self.bg_img).place(x=400, y=180, width=920, height=350)
+
+        self.bg_img1 = Image.open("side.png")
+       # self.bg_img = self.bg_img.resize((920, 350), Image.ANTIALIAS)
+        self.bg_img1 = ImageTk.PhotoImage(self.bg_img1)
+
+        self.lbl_bg1 = Label(self.root, image=self.bg_img1)
+        self.lbl_bg1.place(x=5, y=150, width=400, height=500)
+
+
+
+        # ==== footer  =====
+        footer = Label(self.root, text="Student Result Management system\n For any Technical Issue Contact us : "
+                                       "7420857237",
+                      font=("times", 12), bg='black', fg='white').pack(side=BOTTOM, fill=X)
+
+        # ====== update_details ====
+
+        self.lbl_cource = Label(self.root, text="Total courses\n [ 0 ] ",
+                                font=(" times", 20), bd=10, relief=RIDGE, fg="WHITE", bg="red")
+        self.lbl_cource.place(x=400, y=550, width=300, height=100)
+
+        self.lbl_student = Label(self.root, text=" Total Student\n [ 0 ] ",
+                                font=(" times", 20), bd=10, relief=RIDGE, fg="WHITE", bg="blue")
+        self.lbl_student.place(x=710, y=550, width=300, height=100)
+
+        self.lbl_result = Label(self.root, text=" Total Results\n [ 0 ] ",
+                                font=(" times", 20), bd=10, relief=RIDGE, fg="WHITE", bg="green")
+        self.lbl_result.place(x=1020, y=550, width=300, height=100)
+
+
+    def manage_student(self):
+        root.destroy()
+        os.system('python sms.py')
+
+    def course(self):
+        root.destroy()
+        os.system('python course.py')
+
+    def result(self):
+        root.destroy()
+        os.system('python sresult.py')
+
+    def log_out(self):
+        root.destroy()
+        os.system('python login_file.py')
+
+    def director(self):
+        root.destroy()
+        os.system('python directdesk.py')
+
+    def manage_result(self):
+        root.destroy()
+        os.system('python result.py')
+
+    def about(self):
+        root.destroy()
+        os.system('python about_us.py')
+
+if __name__== "__main__":
+    root = Tk()
+    obj = RMS(root)
+    root.mainloop()
+
+
